@@ -75,7 +75,40 @@ public class Graph {
 			this.neighbors.put(node, node.getNeighbors());
 			HashMap<Node, Integer> initDistances = new HashMap<>();
 			for (Node subNode : nodes){
-				initDistances.put(subNode, -100);
+				initDistances.put(subNode, 100);
+				if (subNode.equals(node)){
+					initDistances.put(subNode, 0);
+				}
+			}
+			this.distances.put(node, initDistances);
+		}
+		
+		/*
+		 * Iterate over all edges to get neighbors set for each node
+		 */
+		for (Edge edge : this.edges){
+			this.neighbors.get(edge.getStartNode()).add(edge.getEndNode());
+		}
+	}
+	
+
+
+	public Graph(HashSet<Node> nodes, HashSet<Edge> edges) {
+		super();
+		this.nodes 		= nodes;
+		this.edges		= edges;
+		this.distances 	= new HashMap<>();
+		this.neighbors 	= new HashMap<>();
+		/* load distances map as well as predecessors of each node
+		*  for each node put predecessor to null
+		*  for each node put distance to any other node to -100
+		*/
+		for (Node node : nodes){
+			node.setPredecessor(null);
+			this.neighbors.put(node, node.getNeighbors());
+			HashMap<Node, Integer> initDistances = new HashMap<>();
+			for (Node subNode : nodes){
+				initDistances.put(subNode, 100);
 				if (subNode.equals(node)){
 					initDistances.put(subNode, 0);
 				}
@@ -112,34 +145,6 @@ public class Graph {
 	}
 
 
-	public Graph(HashSet<Node> nodes, HashSet<Edge> edges) {
-		super();
-		this.nodes 		= nodes;
-		this.edges		= edges;
-		this.distances 	= new HashMap<>();
-		this.neighbors 	= new HashMap<>();
-		/* load distances map as well as predecessors of each node
-		*  for each node put predecessor to null
-		*  for each node put distance to any other node to -100
-		*/
-		for (Node node : nodes){
-			node.setPredecessor(null);
-			this.neighbors.put(node, node.getNeighbors());
-			HashMap<Node, Integer> initDistances = new HashMap<>();
-			for (Node subNode : nodes){
-				initDistances.put(subNode, -100);
-			}
-			this.distances.put(node, initDistances);
-		}
-		
-		/*
-		 * Iterate over all edges to get neighbors set for each node
-		 */
-		for (Edge edge : this.edges){
-			this.neighbors.get(edge.getStartNode()).add(edge.getEndNode());
-		}
-	}
-
 
 	public Node getNode(String name){
 		for (Node node : this.nodes){
@@ -160,6 +165,15 @@ public class Graph {
 
 	public HashSet<Edge> getEdges() {
 		return this.edges;
+	}
+	
+	public Edge getEdge(Node start, Node end) {
+		for (Edge edge : this.edges){
+			if (edge.getStartNode().equals(start) && edge.getEndNode().equals(end)){
+				return edge;
+			}
+		}
+		return null;
 	}
 
 	public void setEdges(HashSet<Edge> edges) {
