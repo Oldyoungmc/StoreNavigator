@@ -1,0 +1,6 @@
+vegetables fruits 1
+vegetables freshFood 1
+fruits freshFood 1
+fruits bread 1
+freshFood bread 1
+bread coffee 1
