@@ -1,9 +1,9 @@
 package Graph;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 public class Dijkstra {
 	
+	// Init is already done in the creation of the graph
 	Graph graph;
 
 	public Dijkstra(Graph graph) {
@@ -20,15 +20,13 @@ public class Dijkstra {
 		this.graph = graph;
 	}
 	
-	public LinkedList<Node> getShortestPath(Node start, Graph graph) {
-		LinkedList<Node> path = new LinkedList<Node>();
+	public void shortestPath(Node start, Graph graph) {
 		HashSet<Node> nodes = this.graph.getNodes();
 		if (graph.containsNode(start)) {
 			while (!nodes.isEmpty()) {
 				
 			}
 		}
-		return path;
 	}
 
 }
