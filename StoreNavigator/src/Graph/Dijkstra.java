@@ -41,7 +41,7 @@ public class Dijkstra {
 		int newDist = dist + distBetweenTwoNeighboringNodes;
 		/*
 		 * TODO
-		 * distinguish between the overall distance between two nodes (thoe that are initalized with infinity)
+		 * distinguish between the overall distance between two nodes (those that are initialized with infinity)
 		 * AND
 		 * those where the distance is 1 --> neighboring nodes
 		 */

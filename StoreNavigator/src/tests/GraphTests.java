@@ -2,17 +2,19 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.LinkedList;
 
 import Graph.Items;
 import Graph.Node;
 import Graph.StoreNavigator;
 import Graph.Graph;
+import HelperAlgorithms.HelperAlgorithms;
 import org.junit.Test;
 
 
 public class GraphTests {
-	Graph testgraph = new Graph("/Users/janriehm/git/SuperMarketCrawler/SuperMarketCrawler/src/EdekaLonsdorfer.txt");
+	Graph testgraph = new Graph("/Users/janriehm/git/StoreNavigator/StoreNavigator/src/EdekaLonsdorfer.txt");
 	
 	@Test
 	public void testNodeCreation() {
@@ -41,5 +43,13 @@ public class GraphTests {
 	public void testNeighbors() {
 		Node cashier = testgraph.getNode("cashier");
 		assertEquals(3,testgraph.getNeighbors().get(cashier).size());
+	}
+	
+	@Test
+	public void testCharDeletion() {
+		HelperAlgorithms ha = new HelperAlgorithms();
+		String s = "Kartoffel";
+		List<String> l = ha.getMissingLetterWords(s);
+		System.out.println(l.toString());
 	}
 }
