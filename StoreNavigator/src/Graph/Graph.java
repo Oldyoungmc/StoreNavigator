@@ -18,12 +18,8 @@ public class Graph {
 	
 	public Graph(String textFile) {
 		super();
-		HashSet<Node> nodes = new HashSet<Node>();
-		HashSet<Edge> edges = new HashSet<Edge>();
-		Node start = null;
-		Node end   = null;
-		Edge edge1 = null;
-		Edge edge2 = null;
+		nodes = new HashSet<Node>();
+		edges = new HashSet<Edge>();
 		int weight = 0;
 		
 		File file = new File(textFile);
@@ -47,14 +43,19 @@ public class Graph {
 		try {
 			while((line = br.readLine()) != null){
 				String[] tokens = line.split(" ");
-				System.out.println(Arrays.toString(tokens));
-				start = new Node(tokens[0]);
-				end = new Node(tokens[1]);
+				Node start = new Node(tokens[0]);
+				Node end = new Node(tokens[1]);
+				
+				//Set neighbor of each node
+				start.addNeighbor(end);
+				end.addNeighbor(start);
+				
 				weight = Integer.parseInt(tokens[2]);
-				edge1 = new Edge(start, end, weight);
-				edge2 = new Edge(end, start, weight);
+				Edge edge1 = new Edge(start, end, weight);
+				Edge edge2 = new Edge(end, start, weight);
 				nodes.add(start);
 				nodes.add(end);
+				
 				edges.add(edge1);
 				edges.add(edge2);
 			}
@@ -62,17 +63,16 @@ public class Graph {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.nodes = nodes;
-		this.edges = edges;
-		this.distances 	= new HashMap<>();
-		this.neighbors 	= new HashMap<>();
+		
+		distances 	= new HashMap<>();
+		neighbors 	= new HashMap<>();
+		
 		/* load distances map as well as predecessors of each node
 		*  for each node put predecessor to null
 		*  for each node put distance to any other node to -100
 		*/
 		for (Node node : nodes){
-			node.setPredecessor(null);
-			this.neighbors.put(node, node.getNeighbors());
+			neighbors.put(node, node.getNeighbors());
 			HashMap<Node, Integer> initDistances = new HashMap<>();
 			for (Node subNode : nodes){
 				initDistances.put(subNode, 100);
@@ -80,14 +80,13 @@ public class Graph {
 					initDistances.put(subNode, 0);
 				}
 			}
-			this.distances.put(node, initDistances);
+			distances.put(node, initDistances);
 		}
-		
 		/*
 		 * Iterate over all edges to get neighbors set for each node
 		 */
-		for (Edge edge : this.edges){
-			this.neighbors.get(edge.getStartNode()).add(edge.getEndNode());
+		for (Edge edge : edges){
+			neighbors.get(edge.getStartNode()).add(edge.getEndNode());
 		}
 	}
 	
@@ -97,8 +96,8 @@ public class Graph {
 		super();
 		this.nodes 		= nodes;
 		this.edges		= edges;
-		this.distances 	= new HashMap<>();
-		this.neighbors 	= new HashMap<>();
+		distances 	= new HashMap<>();
+		neighbors 	= new HashMap<>();
 		/* load distances map as well as predecessors of each node
 		*  for each node put predecessor to null
 		*  for each node put distance to any other node to -100
@@ -113,14 +112,14 @@ public class Graph {
 					initDistances.put(subNode, 0);
 				}
 			}
-			this.distances.put(node, initDistances);
+			distances.put(node, initDistances);
 		}
 		
 		/*
 		 * Iterate over all edges to get neighbors set for each node
 		 */
-		for (Edge edge : this.edges){
-			this.neighbors.get(edge.getStartNode()).add(edge.getEndNode());
+		for (Edge edge : edges){
+			neighbors.get(edge.getStartNode()).add(edge.getEndNode());
 		}
 	}
 	
@@ -136,7 +135,7 @@ public class Graph {
 
 
 	public HashMap<Node, HashSet<Node>> getNeighbors() {
-		return neighbors;
+		return this.neighbors;
 	}
 
 
@@ -147,7 +146,7 @@ public class Graph {
 
 
 	public Node getNode(String name){
-		for (Node node : this.nodes){
+		for (Node node : nodes){
 			if (node.getName().equals(name)){
 				return node;
 			}
@@ -181,7 +180,7 @@ public class Graph {
 	}
 	
 	public boolean containsEdge(Edge edge){
-		return this.edges.contains((Edge) edge);
+		return edges.contains((Edge) edge);
 	}
 	
 	public boolean containsEdge(Node node1, Node node2){
@@ -194,15 +193,15 @@ public class Graph {
 	}
 	
 	public boolean containsNode(Node node){
-		return this.nodes.contains((Node) node);
+		return nodes.contains((Node) node);
 	}
 	
 	public int getDistanceBetweenTwoNodes(Node node1, Node node2){
-		return this.distances.get(node1).get(node2);
+		return distances.get(node1).get(node2);
 	}
 	
 	public void setDistanceBetweenTwoNodes(Node node1, Node node2, int distance){
-		this.distances.get(node1).put(node2, distance);
+		distances.get(node1).put(node2, distance);
 	}
 	
 }

@@ -10,9 +10,9 @@ public class Node {
 	
 	public Node(String name){
 		super();
-		this.category = name;
-		this.predecessor = null;
-		this.neighbors = new HashSet<Node>();
+		category = name;
+		predecessor = null;
+		neighbors = new HashSet<Node>();
 	}
 
 	public String getName() {
@@ -24,19 +24,23 @@ public class Node {
 	}	
 	
 	public Node getPredecessor() {
-		return this.predecessor;
+		return predecessor;
 	}
 	
 	public void setPredecessor(Node node){
-		this.predecessor = node;
+		predecessor = node;
 	}
 	
 	public HashSet<Node> getNeighbors(){
-		return this.neighbors;
+		return neighbors;
 	}
 	
 	public void setNeighbors(HashSet<Node> nodes){
-		this.neighbors = nodes;
+		neighbors = nodes;
+	}
+	
+	public void addNeighbor(Node node){
+		neighbors.add(node);
 	}
 	
 	@Override
@@ -51,6 +55,6 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return this.getName();
+		return getName();
 	}
 }

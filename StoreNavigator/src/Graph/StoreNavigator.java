@@ -27,4 +27,8 @@ public class StoreNavigator {
 	public void setItems(Items items) {
 		this.items = items;
 	}
+	
+	public void main(String args[]){
+		
+	}
 }

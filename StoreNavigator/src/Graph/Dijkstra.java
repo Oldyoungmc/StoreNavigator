@@ -21,36 +21,32 @@ public class Dijkstra {
 		this.graph = graph;
 	}
 	
-	public void shortestPath(Node start, Graph graph) {
-		HashSet<Node> nodes = this.graph.getNodes();
-		int actualDistance = 0;
+	public void shortestPath(Node start, Graph graph, HashSet<Node> nodes) {
 		if (graph.containsNode(start)) {
 			while (!nodes.isEmpty()) {
-				Node u = this.getNodeWithSmallestDistance(start, graph);
+				Node u = getNodeWithSmallestDistance(start, nodes);
 				nodes.remove(u);
 				for (Node node : u.getNeighbors()){
 					if (nodes.contains(node)){
-						updateDistance(u,node, actualDistance, graph);
+						updateDistance(start, u, node, graph);
 					}
 				}
 			}
 		}
 	}
 	
-	public void updateDistance(Node u, Node v, int dist, Graph graph){
-		int newDist = dist + distBetweenTwoNeighboringNodes;
-		/*
-		 * TODO
-		 * distinguish between the overall distance between two nodes (those that are initialized with infinity)
-		 * AND
-		 * those where the distance is 1 --> neighboring nodes
-		 */
+	public void updateDistance(Node startNode, Node u, Node v, Graph graph){
+		int newDist = graph.getDistances().get(startNode).get(u) + distBetweenTwoNeighboringNodes;
+		if (newDist < graph.getDistances().get(startNode).get(v)){
+			graph.getDistances().get(startNode).put(v, newDist);
+			v.setPredecessor(u);
+		}
 	}
 	
-	public Node getNodeWithSmallestDistance(Node node, Graph graph){
+	public Node getNodeWithSmallestDistance(Node node, HashSet<Node> nodes){
 		int minimDist = 100;
 		Node returnNode = null;
-		for (Node actualNode : graph.getNodes()){
+		for (Node actualNode : nodes){
 			if (graph.getDistanceBetweenTwoNodes(node, actualNode) < minimDist){
 				returnNode = actualNode;
 				minimDist = graph.getDistanceBetweenTwoNodes(node, actualNode);
