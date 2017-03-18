@@ -27,13 +27,13 @@ public class Items {
 		this.items.put("oilsAndVinegars", new String[]{"Sonnenblumenöl","Balsamicoessig","Walnussöl","Sesamöl","Rapsöl","Trüffelöl"});
 		this.items.put("cans", new String[]{"Ravioli"});
 		this.items.put("fridge", new String[]{"Butterkäse","Buttermilch","Camembert","Cheddar","Mozarella","Edamer","Emmentaler","Frischkäse","Joghurt","Gouda","Hüttenkäse","Kefir","Milch","Parmesan","Quark","Sahne"});
-		this.items.put("wurst", new String[]{"Salami","Schinken","Schwarzwälder Schinken","Serranoschinken","Parmaschinken","Mortadella","Geflügelwurst","Speck"});
+		this.items.put("wurst", new String[]{"Salami","Schinken","Schwarzwälder Schinken","Serranoschinken","Parmaschinken","Mortadella","Geflügelwurst","Speck", "Wurst"});
 		this.items.put("dips", new String[]{"Ketchup","Curryketchup","Senf","Currymangosauce","Mayonaise","Cocktailsauce"});
 		this.items.put("meat", new String[]{"Bratwurst","Grillware","Steak","Schnitzel"});
 		this.items.put("freezer", new String[]{"Pizza", "Mozarellasticks","TK-Erbsen","TK-Spinat","Eis"});
 		this.items.put("drinks", new String[]{"Malzbier","Cola","Apfelsaft","Saft","Orangensaft","Multisaft"});
 		this.items.put("sweets", new String[]{"Knoppers","Snickers","Duplo","Amicelli","Schokolade","Gummiware","Süsses","Küsschen","Toffer","Toffifee"});
-		this.items.put("chips", new String[]{"Pringles","Orientalische","Lays","Taccos"});
+		this.items.put("chips", new String[]{"Chips", "Pringles","Orientalische","Lays","Taccos"});
 		this.items.put("householdSupply", new String[]{"Müllbeutel","Spülschwämme","Spüllappen","Stahlschwämme","Waschmittel","Pampers","Spüli","Toilettenpapier","Küchenpapier"});
 		this.items.put("bath", new String[]{"Zahnpasta","Shampoo","Spülung","Zahnbürste","Deo"});
 		this.items.put("wine", new String[]{"Rotwein","Weisswein", "Schnaps"});

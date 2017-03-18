@@ -22,12 +22,7 @@ public class HelperAlgorithms {
 		LinkedList<String> list = new LinkedList<>();
 		list.add(s.substring(1));
 		for (int i = 1; i < s.length(); i++){
-			if (i == s.length()-1){
-				list.add(s.substring(0, i-1));
-			}
-			else{
-				list.add(s.substring(0, i).concat(s.substring(i+1)));
-			}
+			list.add(s.substring(0, i).concat(s.substring(i+1)));
 		}
 		return list;
 	}
