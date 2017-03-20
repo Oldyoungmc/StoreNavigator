@@ -2,6 +2,8 @@ package Graph;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import HelperAlgorithms.HelperAlgorithms;
+
 
 public class StoreNavigator {
 	private LinkedList<String> groceryList;
@@ -49,13 +51,13 @@ public class StoreNavigator {
 		}
 		//Should be a list of lists, with all permutations of list items in it.
 		// TODO!!!!!
-		LinkedList<String> permutatedCategories = permutateList(categories);
+		HelperAlgorithms ha = new HelperAlgorithms();
+		ha.permutateList(categories);
+		
+		//LinkedList<String> permutatedCategories = permutateList(categories);
 		return path;
 	}
-	
-	private LinkedList<String> permutateList(LinkedList<String> list){
-		return list; 
-	}
+
 	
 	public static void main(String args[]){
 		Items items = new Items();

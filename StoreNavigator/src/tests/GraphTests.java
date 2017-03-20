@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -27,7 +28,6 @@ public class GraphTests {
 
 	@Test
 	public void testEdgeCreation() {
-		System.out.println(testgraph.getEdges().size());
 		assertEquals(100,testgraph.getEdges().size());
 	}
 	
@@ -74,5 +74,14 @@ public class GraphTests {
 		dijkstra.shortestPath(start, miniGraph, miniGraph.getNodes());
 		assertEquals(bread, coffee.getPredecessor());
 		//assertEquals(bread, miniGraph.getNode("vegetables").getPredecessor());
+	}
+	
+	@Test
+	public void testPermutationAlgo(){
+		HelperAlgorithms ha = new HelperAlgorithms();
+		String s = "Kartoffel";
+		LinkedList<String> l = ha.getMissingLetterWords(s);
+		LinkedList<int[]> list = HelperAlgorithms.permutateList(l);
+		System.out.println(list.size());
 	}
 }
