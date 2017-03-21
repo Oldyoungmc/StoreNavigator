@@ -52,7 +52,7 @@ public class StoreNavigator {
 		//Should be a list of lists, with all permutations of list items in it.
 		// TODO!!!!!
 		HelperAlgorithms ha = new HelperAlgorithms();
-		ha.permutateList(categories);
+		//ha.permutateList(categories);
 		
 		//LinkedList<String> permutatedCategories = permutateList(categories);
 		return path;

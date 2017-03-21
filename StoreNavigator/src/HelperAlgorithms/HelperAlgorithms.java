@@ -12,22 +12,36 @@ public class HelperAlgorithms {
 		// TODO Auto-generated constructor stub
 	}
 	
+	private static int factorial(int n){
+		int fact = 1;
+		for (int i = 1; i <= n; i++){
+			fact *= i;
+		}
+		return fact;
+	}
 	
-	public static LinkedList<int[]> permutateList(LinkedList<String> list){
-		LinkedList<int[]> permutations = new LinkedList<>();
-		int n = list.size();
+	
+	public static String[][] permutateList(String[] list){
+		int n = list.length;
+		String[][] permutations = new String[factorial(n)][];
+		permutations[0] = list;
+		int index = 1;
 		permutation = new int[n];
 		for(int i = 0; i < n; i++){
 			permutation[i] = i;
 		}
-		permutations.add(permutation);
+
 		System.out.println(Arrays.toString(permutation));
 		while(nextPerm()){
-			int[] perm = new int[n];
-			System.arraycopy(permutation, 0, perm, 0, n);
-			permutations.add(perm);
+			String[] perm = new String[n];
+			int[] permint = new int[n];
+			System.arraycopy(permutation, 0, permint, 0, n);
+			for (int i = 0; i < n; i++){
+				perm[i] = list[permint[i]];
+			}
+			permutations[index] = perm;
+			index++;
 		}
-		System.out.println(permutations.size());
 		return permutations;
 	}
 	
@@ -79,11 +93,14 @@ public class HelperAlgorithms {
 	}
 
 	
-	public LinkedList<String> getMissingLetterWords(String s){
-		LinkedList<String> list = new LinkedList<>();
-		list.add(s.substring(1));
+	public String[] getMissingLetterWords(String s){
+		String[] list = new String[s.length()+1];
+		list[0] = s;
+		list[1] = s.substring(1);
+		int index = 2;
 		for (int i = 1; i < s.length(); i++){
-			list.add(s.substring(0, i).concat(s.substring(i+1)));
+			list[index] = s.substring(0, i).concat(s.substring(i+1));
+			index++;
 		}
 		return list;
 	}

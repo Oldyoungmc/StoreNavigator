@@ -52,7 +52,7 @@ public class GraphTests {
 	public void testCharDeletion() {
 		HelperAlgorithms ha = new HelperAlgorithms();
 		String s = "Kartoffel";
-		List<String> l = ha.getMissingLetterWords(s);
+		String[] l = ha.getMissingLetterWords(s);
 		System.out.println(l.toString());
 	}
 	
@@ -80,10 +80,7 @@ public class GraphTests {
 	public void testPermutationAlgo(){
 		HelperAlgorithms ha = new HelperAlgorithms();
 		String s = "Kartoffel";
-		LinkedList<String> l = ha.getMissingLetterWords(s);
-		LinkedList<int[]> list = HelperAlgorithms.permutateList(l);
-		for (int[] i : list){
-			System.out.println(Arrays.toString(i));
-		}
+		String[] l = ha.getMissingLetterWords(s);
+		String[][] list = HelperAlgorithms.permutateList(l);
 	}
 }
