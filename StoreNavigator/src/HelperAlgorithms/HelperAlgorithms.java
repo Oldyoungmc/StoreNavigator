@@ -23,7 +23,8 @@ public class HelperAlgorithms {
 		permutations.add(permutation);
 		System.out.println(Arrays.toString(permutation));
 		while(nextPerm()){
-			int[] perm = permutation;
+			int[] perm = new int[n];
+			System.arraycopy(permutation, 0, perm, 0, n);
 			permutations.add(perm);
 		}
 		System.out.println(permutations.size());

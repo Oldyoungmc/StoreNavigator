@@ -82,6 +82,8 @@ public class GraphTests {
 		String s = "Kartoffel";
 		LinkedList<String> l = ha.getMissingLetterWords(s);
 		LinkedList<int[]> list = HelperAlgorithms.permutateList(l);
-		System.out.println(list.size());
+		for (int[] i : list){
+			System.out.println(Arrays.toString(i));
+		}
 	}
 }
